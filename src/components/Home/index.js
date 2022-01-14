@@ -8,7 +8,9 @@ import {
 } from "react-router-dom";
 import {useLocation, useNavigate, useParams, RouteComponentProps} from "react-router";
 import ReactMarkdown from 'react-markdown'
-
+import Header from '../Header'
+import Contact from '../Contact'
+import Side from '../Side'
 
 
 const Home  = ({work, contact, news, collaborations, playlists}) => {
@@ -18,6 +20,15 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
 	let categories = [];
 	let groupedWorks = {};
 	
+	function openProjAccord(e){
+		let el = e.target
+		let parent = el.closest('.project');
+		if(parent.classList.contains("on")){
+			parent.classList.remove("on")
+		}else{
+			parent.classList.add("on")
+		}
+	}
 
 	for (var i = work.length - 1; i >= 0; i--) {
 		console.log(work[i].fields.Category)
@@ -35,16 +46,18 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
                 return (
                 	<div className="category-group">
                 	   <h1>{category}</h1>
-                	   {groupedWorks[category].map((project) => {
+                	   <ul>
+                	   {groupedWorks[category].map((project, index) => {
                 	   	return(
-                	   		<div className="project">
-                	   			<div className="project-title"><ReactMarkdown>{project.fields.Title}</ReactMarkdown></div>
+                	   		<li key={index} className="project">
+                	   			<div onClick={openProjAccord} className="project-title"><ReactMarkdown>{project.fields.Title}</ReactMarkdown></div>
                 	   			<div className="project-inner">
                 	   				<a href={project.fields.Link}><ReactMarkdown>{project.fields.Description}</ReactMarkdown></a>
                 	   			</div>
-                	   		</div>
+                	   		</li>
                 	   		)
                 	   })}
+                	   </ul>
                 	</div>
                   
        
@@ -54,54 +67,22 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
           })
 	/* end code for grouping work by category */
 
-	/* gets contact links */
-	let contacts = contact.map((contactItem, index) =>{
-		if(contactItem.fields.Text){
-		return (
-			<>	
-				{ index !== 0 &&
-					<span> / </span>
-				}
-				<a href={contactItem.fields.Url}>{contactItem.fields.Text}</a>
-			</>
-				)
-			
-		}
-	})
 
-	/* gets collaborations links */
-	let collaborationitems = collaborations.map((collaborationItem) =>{
-		if(collaborationItem.fields.Text){
-			return (
-		
-				<a href={collaborationItem.fields.Link}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></a>
-		
-				)
-		}
-	})
-
-	/* gets news items */
-	let newsitems = news.map((newsItem) =>{
-		if(newsItem.fields.NewsText){
-			return (
-		
-				<div className="news-item">
-					<span>{newsItem.fields["Date To Show"]}</span> - 
-					<ReactMarkdown>{newsItem.fields.NewsText}</ReactMarkdown>
-				</div>
-		
-				)
-		}
-	})
 	
 
     return (
-    	<>
-    		{contacts}
-    		{works}
-    		{collaborationitems}
-    		{newsitems}
-        </>
+    	<div className="global-wrapper">
+	    	<main>
+	    		<Header/>
+	    		<Contact contact={contact}/>
+	    		<h1 className="work-heading">SELECTED WORK</h1>
+	    		<div className="projects-wrapper">
+	    			{works}
+	    		</div>
+	    		
+	    	</main>
+	    	<Side collaborations={collaborations} news={news} playlist={false}/>
+        </div>
     );
 }
 

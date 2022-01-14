@@ -1,0 +1,23 @@
+header{
+	font-family: 'Phase-CGX', Arial;
+	font-size: 64px;
+	width: calc(100% - 20px);
+	border-bottom: 1px solid #964B00;
+	display: block;
+	padding: 10px;
+}
+header h1 span{
+	font-size: 18px;
+}
+header a:hover{
+	font-style: normal;
+}
+
+@media(max-width:768px){
+	header{
+		font-size:46px;
+	}
+	header h1 span{
+		font-size: 16px;
+	}
+}

@@ -9,6 +9,9 @@ import {
 import {Nav} from "../"
 import {useLocation, useNavigate, useParams, RouteComponentProps} from "react-router";
 import ReactMarkdown from 'react-markdown'
+import Header from "../Header"
+import Contact from "../Contact"
+import Side from "../Side"
 
 const Playlist = ({work, contact, news, collaborations, playlists}) => {
 	const { id } = useParams()
@@ -22,18 +25,30 @@ const Playlist = ({work, contact, news, collaborations, playlists}) => {
 
 
     return (
-    	<>
-		{currentPlaylist ?
-            <>
-                <h1>{currentPlaylist.fields.Title}</h1>
-                <div dangerouslySetInnerHTML={{__html: currentPlaylist.fields["Embed Code"]}} />
-            </>
-            :
-            <>
-                <h1>Oh no! The page you are looking for does not exist. Try going back <a href="/">home.</a></h1>
-            </>
-        }
-        </>
+    	
+        <div className="global-wrapper">
+            <main>
+                <Header/>
+                <Contact contact={contact}/>
+                
+                {currentPlaylist ?
+                        <>
+                        <h1 className="work-heading">{currentPlaylist.fields.Title}</h1>
+                        <div className="projects-wrapper spotify-wrapper">
+                     
+                            <div dangerouslySetInnerHTML={{__html: currentPlaylist.fields["Embed Code"]}} />
+                        </div>
+                        </>
+                        :
+                        <>
+                            <span>Loading...</span>
+                        </>
+                }
+           
+                
+            </main>
+            <Side collaborations={collaborations} news={news} playlist={true}/>
+        </div>
     );
 }
 

@@ -1,0 +1,150 @@
+.side-panel{
+	border-left:1px solid #964B00;
+	min-height: 100vh;
+}
+.accordion-trigger h1, .accordion-trigger span{
+	display: inline-block;
+}
+.accordion::after{
+	content: " ";
+    display: block;
+    border-top: 1px solid #964B00;
+    border-bottom: 1px solid #964B00;
+    height: 2px;
+    position: absolute;
+    bottom: -7px;
+    top: auto;
+    width: 100%;
+    transition:0.2s;
+}
+.accordion-trigger{
+	display: block;
+	padding:10px;
+	cursor: pointer;
+	border-top:1px solid #964B00;
+}
+.accordion-trigger h1{
+	margin-right:10px;
+}
+.accordion.open::after{
+	border-bottom:none;
+	bottom: -6px;
+}
+.accordion{
+	position:relative;
+	border-bottom:1px solid #964B00;
+}
+.accordion-inner a::after{
+	opacity: 0;
+	transition:0.2s;
+	pointer-events: none;
+}
+.accordion-inner{
+	max-height:0;
+	transition:0.2s;
+	overflow:hidden;
+}
+.accordion.open .accordion-inner{
+	max-height: 1000px;
+	transition:2s;
+}
+
+.accordion.open .accordion-inner a::after{
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.signature{
+	padding:10px;
+	padding-top:20px;
+}
+.signature .img-wrapper img{
+	width: 300px;
+}
+.signature .gif-wrapper{
+	position: relative;
+	display: block;
+	margin:0 auto;
+	width: 200px;
+	margin-top:20px;
+	height:200px;
+}
+
+.signature .img-wrapper{
+	left:0px;
+	top:0px;
+	transform-origin: center;
+	width: 200px;
+	overflow:hidden;
+	height:200px;
+	position:absolute;
+}
+.signature .img-wrapper:first-child{
+	animation: zoom 5s infinite;
+	animation-delay: 2.5s;
+}
+
+.signature .img-wrapper:last-child{
+	animation: zoom 5s infinite;
+}
+
+@keyframes zoom {
+  0%    { transform:scale(0);z-index: 2;}
+  50%  { transform:scale(1); z-index:2;}
+  100%  { transform:scale(1); z-index:-1;}
+}
+.news-item{
+	max-width: calc(100% - 30px);
+	padding-left:10px;
+}
+.accordion-inner{
+	max-width: calc(100% - 60px);
+	padding:0 20px;
+}
+.recent-news-wrapper{
+	padding:10px;
+}
+.recent-news-wrapper > h1{
+	margin-bottom:20px;
+}
+.beating-heart{
+	margin-top:5px;
+	position: relative;
+	border-bottom:1px solid #964B00;
+}
+.beating-heart::after{
+	content: " ";
+    width: 100%;
+    height: 300px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    mix-blend-mode: lighten;
+    pointer-events: none;
+    background: #964b00;
+}
+
+.beating-heart > div{
+	height: 300px;
+}
+.beating-heart iframe{
+	width: 100% !important;
+	height: 300px !important;
+	filter: contrast(1) grayscale(2);
+}
+@media(max-width: 768px){
+	.signature .gif-wrapper{
+		padding-bottom: 40px;
+	}
+	.side-panel{
+		border-top:1px solid #964B00;
+		min-height:auto;
+		overflow:visible;
+	}
+	.beating-heart{
+		display: none;
+	}
+	
+
+}
