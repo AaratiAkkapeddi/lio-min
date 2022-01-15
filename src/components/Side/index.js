@@ -50,10 +50,6 @@ const Side  = ({collaborations, news, playlist}) => {
 
     return (
     	<div className="side-panel">
-    		<div className="recent-news-wrapper">
-    			<h1>RECENT NEWS</h1>
-    			<ul>{newsitems}</ul>
-    		</div>
     		<div className="collaborations-wrapper accordion">
     			<div onClick={openAccordion} className="accordion-trigger">
     				<h1>COLLABORATIONS</h1>
@@ -65,9 +61,14 @@ const Side  = ({collaborations, news, playlist}) => {
     				<ul>{collaborationitems}</ul>
     			</div>
     		</div>
-    		{!playlist &&
+    		<div className="recent-news-wrapper">
+    			<h1>RECENT NEWS</h1>
+    			<ul>{newsitems}</ul>
+    		</div>
+    		{playlist &&
     		<div className="beating-heart">
-    		    <div dangerouslySetInnerHTML={{__html: iframeHtml}} />
+    		    <h1>RADIO LIO</h1>
+    		    <div dangerouslySetInnerHTML={{__html: playlist}} />
     		</div>
     		}
     		<div className="signature">

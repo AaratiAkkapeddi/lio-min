@@ -1,5 +1,7 @@
 .work-heading{
-	padding:10px; 
+	padding:0px 0;
+	margin-left:-10px;
+	margin-bottom:40px; 
 }
 .projects-wrapper{
 	padding: 20px;
@@ -49,4 +51,93 @@
 	max-height:1000px;
     transition:2s;
 }
+.projects-wrapper .accordion-trigger svg{
+	display: none;
+}
 
+@media(max-width:768px){
+	.category-group{
+		display: block;
+	}
+	.work-heading{
+		margin:10px;
+		margin-bottom:0;
+	}
+	.projects-wrapper{
+		padding:0;
+		width:100%;
+	}
+	.projects-wrapper .accordion-trigger svg{
+		display: inline-block;
+		float:right;
+	}
+	.projects-wrapper .accordion-trigger h1, .accordion-trigger span{
+		display: inline-block;
+	}
+	.projects-wrapper .accordion::after{
+		content: " ";
+	    display: block;
+	    border-top: 1px solid #964B00;
+	    border-bottom: 1px solid #964B00;
+	    height: 2px;
+	    position: absolute;
+	    bottom: -7px;
+	    top: auto;
+	    width: 100%;
+	    transition:0.2s;
+	}
+	.projects-wrapper .accordion-trigger{
+		display: block;
+		padding:10px;
+		cursor: pointer;
+	
+	}
+	.projects-wrapper .accordion:nth-child(2){
+		border-top:none;
+	}
+	.projects-wrapper .accordion-trigger{
+		padding-left: 40px;
+	    padding-bottom: 5px;
+	    padding-top: 13px;
+	}
+	.projects-wrapper .accordion.open::after{
+		border-bottom:none;
+		bottom: -6px;
+	}
+	.projects-wrapper .accordion{
+		position:relative;
+		margin-bottom:0;
+		border-bottom:1px solid #964B00;
+	}
+	.projects-wrapper .accordion-inner a::after{
+		opacity: 0;
+		transition:0.2s;
+		pointer-events: none;
+	}
+	.projects-wrapper .accordion-inner{
+		max-height:0;
+		transition:0.2s;
+		margin-left:20px;
+		overflow:hidden;
+	}
+	.project .project-inner{
+		max-height:1000px;
+		max-width:100%;
+	}
+	.projects-wrapper .accordion.open .accordion-inner{
+		max-height: 1000px;
+		transition:2s;
+	}
+
+	.projects-wrapper .accordion.open .accordion-inner a::after{
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.projects-wrapper .accordion .accordion-trigger svg{
+		transition:0.2s;
+	}
+	.projects-wrapper .accordion.open .accordion-trigger svg{
+		transform:scaleY(-1);
+	}
+
+}

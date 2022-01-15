@@ -58,7 +58,38 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.projects-wrapper{
+	width: calc(100% - 40px);
+	height:calc(100vh - (82px + 98px));
+	overflow: scroll;
+}
+::-webkit-scrollbar-corner {
+	border-left:1px solid #964B00;
+  background: rgba(0,0,0,0);
+}
+/* width */
+.projects-wrapper::-webkit-scrollbar {
+  width: 20px;
+}
 
+/* Track */
+.projects-wrapper::-webkit-scrollbar-track {
+  background: transparent; 
+  border-left:1px solid #964B00;
+}
+ 
+/* Handle */
+.projects-wrapper::-webkit-scrollbar-thumb {
+  background: #964B00; 
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  box-sizing:border-box;
+}
+
+/* Handle on hover */
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #964B00; 
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -95,6 +126,11 @@ main{
 	}
 	main{
 		flex-basis:auto;
+		
+	}
+	.projects-wrapper{
+		height:auto;
+		overflow: visible;
 	}
 	.side-panel{
 		flex-basis:auto;

@@ -19,7 +19,41 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
 	let ungroupedWorks = work;
 	let categories = [];
 	let groupedWorks = {};
-	
+	let hpPlaylist = false
+    for (var i = playlists.length - 1; i >= 0; i--) {
+        if(playlists[i].fields.feature_on_hp){
+            hpPlaylist = playlists[i].fields["Embed Code"]
+        }
+    }
+    function openAccordion(e){
+		let el = e.target
+		let parent = el.closest('.accordion');
+		if(parent.classList.contains("open")){
+			parent.classList.remove("open")
+		}else{
+			parent.classList.add("open")
+		}
+	}
+    function filterStuff(e){
+   	   let el = e.target;
+   	   let container = document.querySelector(".projects-wrapper")
+   	   let id = el.id.split("-trigger")[0];
+   	   console.log("#"+id + "-group")
+   	   let group = document.querySelector("#"+id + "-group");
+   	   if(group.classList?.contains('on')){
+   	   	group.classList?.remove('on')
+   	   	el.classList.remove("on")
+   	   }else{
+   	   	group.classList?.add('on')
+   	   	el.classList.add("on")
+   	   	if(!container.classList.contains("on")){
+   	   		container.classList.add("on")
+   	   	}
+   	   }
+   	   if(!document.querySelector(".category-group.on")){
+   	   		container.classList.remove("on")
+   	   }
+   }
 	function openProjAccord(e){
 		let el = e.target
 		let parent = el.closest('.project');
@@ -40,19 +74,21 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
 			groupedWorks[work[i].fields.Category].push(work[i])
 		}
 	}
-	let works = categories.map((category) => {
+	let works = categories.map((category, index) => {
 
-   				console.log(groupedWorks[category])
+
                 return (
-                	<div className="category-group">
-                	   <h1>{category}</h1>
-                	   <ul>
+                	<div key={index} id={category.toLowerCase().split(" ").join("-") + "-group"} className="category-group accordion">
+                	   <h1 onClick={openAccordion} className="accordion-trigger">{category}<svg width="25" height="13" viewBox="0 0 25 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M0.999882 1L12.6912 12.25L24.3826 1" stroke="#964B00"/>
+					</svg></h1>
+                	   <ul className="accordion-inner">
                 	   {groupedWorks[category].map((project, index) => {
                 	   	return(
                 	   		<li key={index} className="project">
                 	   			<div onClick={openProjAccord} className="project-title"><ReactMarkdown>{project.fields.Title}</ReactMarkdown></div>
                 	   			<div className="project-inner">
-                	   				<a href={project.fields.Link}><ReactMarkdown>{project.fields.Description}</ReactMarkdown></a>
+                	   				<ReactMarkdown>{project.fields.Description}</ReactMarkdown>
                 	   			</div>
                 	   		</li>
                 	   		)
@@ -61,6 +97,18 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
                 	</div>
                   
        
+                )
+
+              
+          })
+	
+	let filters = categories.map((category, index) => {
+
+
+                return (
+                	<li onClick={filterStuff} key={index} id={category.toLowerCase().split(" ").join("-") + "-trigger"} className="category-filter">
+                	   {category} 	   
+                	</li>       
                 )
 
               
@@ -74,14 +122,15 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
     	<div className="global-wrapper">
 	    	<main>
 	    		<Header/>
-	    		<Contact contact={contact}/>
-	    		<h1 className="work-heading">SELECTED WORK</h1>
+	    		<Contact filters={filters} contact={contact}/>
+	    		
 	    		<div className="projects-wrapper">
+	    		<h1 className="work-heading">SELECTED WORK</h1>
 	    			{works}
 	    		</div>
 	    		
 	    	</main>
-	    	<Side collaborations={collaborations} news={news} playlist={false}/>
+	    	<Side collaborations={collaborations} news={news} playlist={hpPlaylist}/>
         </div>
     );
 }

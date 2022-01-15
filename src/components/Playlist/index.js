@@ -17,10 +17,15 @@ const Playlist = ({work, contact, news, collaborations, playlists}) => {
 	const { id } = useParams()
     let currentPlaylist;
     let iframeSrc = ''
+    let hpPlaylist = false
     for (var i = playlists.length - 1; i >= 0; i--) {
         if(playlists[i].fields.Slug?.trim() === id){
             currentPlaylist = playlists[i]
         }
+        if(playlists[i].fields.feature_on_hp){
+            hpPlaylist = playlists[i].fields["Embed Code"]
+        }
+
     }
 
 
@@ -29,13 +34,13 @@ const Playlist = ({work, contact, news, collaborations, playlists}) => {
         <div className="global-wrapper">
             <main>
                 <Header/>
-                <Contact contact={contact}/>
+                <Contact filters={false} contact={contact}/>
                 
                 {currentPlaylist ?
                         <>
-                        <h1 className="work-heading">{currentPlaylist.fields.Title}</h1>
                         <div className="projects-wrapper spotify-wrapper">
-                     
+                            <h1 className="work-heading">{currentPlaylist.fields.Title}</h1>
+
                             <div dangerouslySetInnerHTML={{__html: currentPlaylist.fields["Embed Code"]}} />
                         </div>
                         </>
@@ -47,7 +52,7 @@ const Playlist = ({work, contact, news, collaborations, playlists}) => {
            
                 
             </main>
-            <Side collaborations={collaborations} news={news} playlist={true}/>
+            <Side collaborations={collaborations} news={news} playlist={false}/>
         </div>
     );
 }
