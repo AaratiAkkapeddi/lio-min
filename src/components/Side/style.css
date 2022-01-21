@@ -147,7 +147,7 @@
 	height: 200px !important;
 	filter: contrast(1) grayscale(2);
 }
-@media(max-width: 768px){
+@media(max-width: 1136px){
 	.signature .gif-wrapper{
 		padding-bottom: 40px;
 	}
@@ -176,6 +176,15 @@
 	}
 	.side-panel .accordion-trigger{
 		padding-top:18px;
+	}
+	.side-panel .accordion-inner{
+		max-height:1000px;
+	}
+	.side-panel .accordion-trigger svg{
+		display: none;
+	}
+	.side-panel .accordion::after{
+		display: none;
 	}
 
 }

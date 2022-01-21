@@ -13,7 +13,7 @@ header a:hover{
 	font-style: normal;
 }
 
-@media(max-width:768px){
+@media(max-width:1135px){
 	header{
 		font-size:46px;
 	}

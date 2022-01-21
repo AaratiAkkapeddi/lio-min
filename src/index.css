@@ -112,15 +112,18 @@ main{
 		flex-basis:20%;
 	}
 }
-@media(max-width: 1135px){
-	main{
-		flex-basis:70%;
-	}
-	.side-panel{
-		flex-basis:30%;
+@media(max-width:1375px){
+	body{
+		font-size:16px;
 	}
 }
-@media(max-width: 768px){
+@media(max-width:1235px){
+	body{
+		font-size:14px;
+	}
+}
+
+@media(max-width: 1136px){
 	.global-wrapper{
 		flex-direction: column;
 	}

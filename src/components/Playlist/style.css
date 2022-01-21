@@ -16,7 +16,7 @@
     width: 50% !important;
 	filter: contrast(2) grayscale(2);
 }
-@media(max-width: 768px){
+@media(max-width: 1136px){
     .spotify-wrapper{
         width: 80%;
     }

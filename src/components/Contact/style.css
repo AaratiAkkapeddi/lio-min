@@ -36,7 +36,8 @@
 #mobile-contact-menu{
 	display: none;
 }
-@media(max-width:768px){
+
+@media(max-width:1135px){
 
 	#mobile-contact-menu{
 		position: fixed;

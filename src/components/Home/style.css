@@ -5,6 +5,7 @@
 }
 .projects-wrapper{
 	padding: 20px;
+	overflow-x: hidden;
 }
 .project-inner{
 	padding:0 20px;
@@ -55,7 +56,7 @@
 	display: none;
 }
 
-@media(max-width:768px){
+@media(max-width:1136px){
 	.category-group{
 		display: block;
 	}
