@@ -76,7 +76,7 @@ const Side  = ({collaborations, news, playlist}) => {
     		</div>
     		{playlist &&
     		<div className="beating-heart">
-    		    <h1>RADIO LIO</h1>
+    		    <h1>#RADIOLIO</h1>
     		    <div dangerouslySetInnerHTML={{__html: playlist}} />
     		</div>
     		}
