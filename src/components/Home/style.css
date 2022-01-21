@@ -66,6 +66,8 @@
 	}
 	.projects-wrapper{
 		padding:0;
+		overflow-y: visible;
+		height:auto;
 		width:100%;
 	}
 	.projects-wrapper .accordion-trigger svg{
