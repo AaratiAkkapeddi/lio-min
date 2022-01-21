@@ -96,7 +96,16 @@ const Home  = ({work, contact,  news, collaborations, playlists}) => {
                 	   		<li key={index} className="project">
                 	   			<div onClick={openProjAccord} className="project-title"><ReactMarkdown>{project.fields.Title}</ReactMarkdown></div>
                 	   			<div className="project-inner">
-                	   				<ReactMarkdown>{project.fields.Description}</ReactMarkdown>
+                	   				<ReactMarkdown linkTarget={'_blank'}
+                                            components={{
+                                                a: ({ node, children, ...props}) => {
+                                                    const linkProps = props;
+                                                    if (props.target === '_blank') {
+                                                        linkProps['rel'] = 'noopener noreferrer';
+                                                    }
+                                                    return <a {...linkProps}>{children}</a>
+                                                }
+                                            }}>{project.fields.Description}</ReactMarkdown>
                 	   			</div>
                 	   		</li>
                 	   		)

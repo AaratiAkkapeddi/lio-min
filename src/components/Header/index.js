@@ -12,7 +12,7 @@ import {useLocation, useNavigate, useParams, RouteComponentProps} from "react-ro
 const Header  = () => {
     return (
     	<header>
-    		<a className="nav" href="/"><h1>Lio Min <span>加州作家</span></h1></a>
+    		<a target="_blank" className="nav" href="/"><h1>Lio Min <span>加州作家</span></h1></a>
         </header>
     );
 }

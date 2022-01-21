@@ -28,7 +28,7 @@ const Contact  = ({contact, filters}) => {
 				{ index !== 0 &&
 					<span key={index+888}> / </span>
 				}
-				<a key={index} className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text}</a>
+				<a target="_blank" key={index} className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text}</a>
 			</span>
 				)
 			
@@ -40,7 +40,7 @@ const Contact  = ({contact, filters}) => {
 		return (
 			<li key={index}>	
 		
-				<a className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text} →</a>
+				<a target="_blank" className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text} →</a>
 			</li>
 				)
 			

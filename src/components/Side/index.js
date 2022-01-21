@@ -18,7 +18,7 @@ const Side  = ({collaborations, news, playlist}) => {
 		if(collaborationItem.fields.Text && !collaborationItem.fields.isNote){
 			return (
 		
-				<li key={index}><a href={collaborationItem.fields.Link}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></a></li>
+				<li key={index}><a target_blank href={collaborationItem.fields.Link}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></a></li>
 		
 				)
 		}
@@ -27,7 +27,16 @@ const Side  = ({collaborations, news, playlist}) => {
 		if(collaborationItem.fields.Text && collaborationItem.fields.isNote){
 			return (
 		
-				<div key={index}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></div>
+				<div key={index}><ReactMarkdown linkTarget={'_blank'}
+                                            components={{
+                                                a: ({ node, children, ...props}) => {
+                                                    const linkProps = props;
+                                                    if (props.target === '_blank') {
+                                                        linkProps['rel'] = 'noopener noreferrer';
+                                                    }
+                                                    return <a {...linkProps}>{children}</a>
+                                                }
+                                            }}>{collaborationItem.fields.Text}</ReactMarkdown></div>
 		
 				)
 		}
@@ -49,7 +58,16 @@ const Side  = ({collaborations, news, playlist}) => {
 		
 				<li key={index} className="news-item">
 				
-					<ReactMarkdown>{newsItem.fields.NewsText}</ReactMarkdown>
+					<ReactMarkdown linkTarget={'_blank'}
+                                            components={{
+                                                a: ({ node, children, ...props}) => {
+                                                    const linkProps = props;
+                                                    if (props.target === '_blank') {
+                                                        linkProps['rel'] = 'noopener noreferrer';
+                                                    }
+                                                    return <a {...linkProps}>{children}</a>
+                                                }
+                                            }}>{newsItem.fields.NewsText}</ReactMarkdown>
 				</li>
 		
 				)
@@ -76,7 +94,7 @@ const Side  = ({collaborations, news, playlist}) => {
     		</div>
     		{playlist &&
     		<div className="beating-heart">
-    		    <h1>#RADIOLIO</h1>
+    		    <h1><a target="_blank" href="https://emoocean.tumblr.com/tagged/RADIOLIO">#RADIOLIO</a></h1>
     		    <div dangerouslySetInnerHTML={{__html: playlist}} />
     		</div>
     		}
