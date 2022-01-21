@@ -15,10 +15,19 @@ const Side  = ({collaborations, news, playlist}) => {
   console.log(collaborations,news)
 	/* gets collaborations links */
 	let collaborationitems = collaborations?.map((collaborationItem, index) =>{
-		if(collaborationItem.fields.Text){
+		if(collaborationItem.fields.Text && !collaborationItem.fields.isNote){
 			return (
 		
 				<li key={index}><a href={collaborationItem.fields.Link}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></a></li>
+		
+				)
+		}
+	})
+	let note = collaborations?.map((collaborationItem, index) =>{
+		if(collaborationItem.fields.Text && collaborationItem.fields.isNote){
+			return (
+		
+				<div key={index}><ReactMarkdown>{collaborationItem.fields.Text}</ReactMarkdown></div>
 		
 				)
 		}
@@ -62,7 +71,7 @@ const Side  = ({collaborations, news, playlist}) => {
     			</div>
     		</div>
     		<div className="recent-news-wrapper">
-    			<h1>RECENT NEWS</h1>
+    			<h1>UPCOMING</h1>
     			<ul>{newsitems}</ul>
     		</div>
     		{playlist &&
@@ -72,10 +81,10 @@ const Side  = ({collaborations, news, playlist}) => {
     		</div>
     		}
     		<div className="signature">
-    			<h1>#TRANSCROWDFUND</h1>
+    			{note}
     			<div className="gif-wrapper">
-    				<div class="img-wrapper"><img src={ocean}/></div>
-					<div class="img-wrapper"><img src={emo}/></div>
+    				<div className="img-wrapper"><img src={ocean}/></div>
+					<div className="img-wrapper"><img src={emo}/></div>
 				</div>
     		</div>
     		

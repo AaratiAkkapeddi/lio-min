@@ -13,7 +13,7 @@ import Contact from '../Contact'
 import Side from '../Side'
 
 
-const Home  = ({work, contact, news, collaborations, playlists}) => {
+const Home  = ({work, contact,  news, collaborations, playlists}) => {
 
 	/* Groups work by category */
 	let ungroupedWorks = work;
@@ -37,6 +37,8 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
     function filterStuff(e){
    	   let el = e.target;
    	   let container = document.querySelector(".projects-wrapper")
+       let filters = document.querySelectorAll(".category-filter")
+       let groups = document.querySelectorAll(".category-group")
    	   let id = el.id.split("-trigger")[0];
    	   console.log("#"+id + "-group")
    	   let group = document.querySelector("#"+id + "-group");
@@ -44,6 +46,12 @@ const Home  = ({work, contact, news, collaborations, playlists}) => {
    	   	group.classList?.remove('on')
    	   	el.classList.remove("on")
    	   }else{
+        for (var i = filters.length - 1; i >= 0; i--) {
+          filters[i].classList.remove("on")
+        }
+        for (var i = groups.length - 1; i >= 0; i--) {
+          groups[i].classList.remove("on")
+        }
    	   	group.classList?.add('on')
    	   	el.classList.add("on")
    	   	if(!container.classList.contains("on")){

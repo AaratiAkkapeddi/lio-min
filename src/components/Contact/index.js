@@ -24,12 +24,12 @@ const Contact  = ({contact, filters}) => {
 	let contacts = contact?.map((contactItem, index) =>{
 		if(contactItem.fields.Text){
 		return (
-			<>	
+			<span key={index}>	
 				{ index !== 0 &&
-					<span> / </span>
+					<span key={index+888}> / </span>
 				}
 				<a key={index} className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text}</a>
-			</>
+			</span>
 				)
 			
 		}
@@ -38,9 +38,9 @@ const Contact  = ({contact, filters}) => {
 	let mobileContacts = contact?.map((contactItem, index) =>{
 		if(contactItem.fields.Text){
 		return (
-			<li>	
+			<li key={index}>	
 		
-				<a key={index} className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text} →</a>
+				<a className="nav" href={contactItem.fields.Url}>{contactItem.fields.Text} →</a>
 			</li>
 				)
 			
