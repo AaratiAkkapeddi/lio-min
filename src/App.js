@@ -32,31 +32,31 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Work?api_key='+process.env.REACT_APP_AIRTABLE_API_KEY+"&view=grid")
+      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Work?&view=grid', { headers: new Headers({ 'Authorization': 'Bearer ' + process.env.REACT_APP_LIO })})
         .then(res => res.json())
         .then(res => {
           this.setState({ work: res.records.reverse() })
         })
         .catch(error => console.log(error))
-      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Contact?api_key='+process.env.REACT_APP_AIRTABLE_API_KEY+"&view=grid")
+      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Contact?&view=grid',{ headers: new Headers({ 'Authorization': 'Bearer ' + process.env.REACT_APP_LIO })})
         .then(res => res.json())
         .then(res => {
           this.setState({ contact: res.records })
         })
         .catch(error => console.log(error))
-      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Recent%20News?api_key='+process.env.REACT_APP_AIRTABLE_API_KEY+"&view=grid")
+      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Recent%20News?&view=grid',{ headers: new Headers({ 'Authorization': 'Bearer ' + process.env.REACT_APP_LIO })})
         .then(res => res.json())
         .then(res => {
           this.setState({ news: res.records })
         })
         .catch(error => console.log(error))
-      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Collaborations?api_key='+process.env.REACT_APP_AIRTABLE_API_KEY+"&view=grid")
+      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Collaborations?&view=grid',{ headers: new Headers({ 'Authorization': 'Bearer ' + process.env.REACT_APP_LIO })})
         .then(res => res.json())
         .then(res => {
           this.setState({ collaborations: res.records })
         })
         .catch(error => console.log(error))
-      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Playlists?api_key='+process.env.REACT_APP_AIRTABLE_API_KEY+"&view=grid")
+      fetch('https://api.airtable.com/v0/appRUjNpdyTGlg8jN/Playlists?&view=grid',{ headers: new Headers({ 'Authorization': 'Bearer ' + process.env.REACT_APP_LIO })})
         .then(res => res.json())
         .then(res => {
           this.setState({ playlists: res.records.reverse() })
